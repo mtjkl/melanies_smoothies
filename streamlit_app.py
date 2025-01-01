@@ -31,6 +31,9 @@ if ingredients_list: #is not null by default
     
     for fruits_chosen in ingredients_list:
         ingredients_string += fruits_chosen + ' '
+        smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
+        #st.text(smoothiefroot_response.json())
+        st_df = st.dataframe(data = smoothiefroot_response.json(), use_container_width = True)
 
     #st.write(ingredients_string)
 
@@ -47,6 +50,4 @@ if ingredients_list: #is not null by default
         session.sql(my_insert_stmt).collect()
         st.success('Your Smoothie is ordered!', icon="✅")
 
-smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
-#st.text(smoothiefroot_response.json())
-st_df = st.dataframe(data = smoothiefroot_response.json(), use_container_width = True)
+
